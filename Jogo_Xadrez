@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define BOARD_SIZE 8
+
+// Estrutura para representar uma peça
+typedef struct {
+    char symbol;
+} Piece;
+
+// Estrutura para representar o tabuleiro
+typedef struct {
+    Piece squares[BOARD_SIZE][BOARD_SIZE];
+} Board;
+
+// Função para inicializar o tabuleiro com as peças na posição inicial
+void initializeBoard(Board *board) {
+    // Implementação básica, definindo apenas os símbolos das peças iniciais
+    board->squares[0][0].symbol = 'R'; // Torre
+    board->squares[0][1].symbol = 'N'; // Cavalo
+    // ... preencha o restante das peças
+
+    // Preencher o restante do tabuleiro com espaços vazios
+    for (int i = 2; i < BOARD_SIZE; ++i) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            board->squares[i][j].symbol = ' ';
+        }
+    }
+}
+
+// Função para exibir o tabuleiro
+void displayBoard(Board *board) {
+    printf("\n  a b c d e f g h\n");
+    printf("  -----------------\n");
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        printf("%d|", BOARD_SIZE - i);
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            printf("%c|", board->squares[i][j].symbol);
+        }
+        printf("%d\n", BOARD_SIZE - i);
+    }
+    printf("  -----------------\n");
+    printf("  a b c d e f g h\n\n");
+}
+
+int main() {
+    Board chessBoard;
+    initializeBoard(&chessBoard);
+    displayBoard(&chessBoard);
+
+    return 0;
+}
